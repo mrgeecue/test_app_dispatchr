@@ -4,7 +4,6 @@ const mount = require('koa-mount');
 const port = 8000;
 const data = require('./test.json')
 const cors = require('kcors');
-// const router = require('router');
 
 const app = new Koa();
 

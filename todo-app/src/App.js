@@ -9,7 +9,8 @@ const router = Router();
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {value: '', //initializing the state with a value and data object
+    data: []};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -22,7 +23,10 @@ class App extends Component {
     };
     var res = await fetch('http://localhost:8000/ping', options);
     res = await res.json();
-    console.log('RESPONSE ----->', res);
+    this.setState({
+      data: res.Data
+    });
+    console.log('RESPONSE ----->', res.Data);
   };
 
   handleChange(event){
@@ -39,20 +43,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Todo App</h2>
-        </div>
-          <h1>Enter a todo item</h1>
-          <form>
-            <input type="text" placeholder="Todo" value={this.state.value} onChange={this.handleChange} /><br/><br/>
-            <input type="submit" value="Submit" onClick={this.handleButtonClick}/>
-          </form>
-          
+      <div className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h2>Todo App</h2>
+      </div>
+      <h1>Enter a todo item</h1>
+      <form>
+        <input type="text" placeholder="Todo" value={this.state.value} onChange={this.handleChange} /><br/><br/>
+        <input type="submit" value="Submit" onClick={this.handleButtonClick}/>
+      </form>
+      <div>
+      <h1>Data</h1>
+      {
+        this.state.data.map((data, idx) => {
+          return (
+            <h1>{data.name}</h1>
+          );
+        })
+      }
+      </div>
       </div>
     );
   };
 }
-
 
 export default App;
