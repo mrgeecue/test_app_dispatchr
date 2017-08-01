@@ -1,4 +1,4 @@
-import React, { Component, View } from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Router from 'router';
@@ -48,9 +48,7 @@ class App extends Component {
             <input type="text" placeholder="Todo" value={this.state.value} onChange={this.handleChange} /><br/><br/>
             <input type="submit" value="Submit" onClick={this.handleButtonClick}/>
           </form>
-          <View>
-            test test
-          </View>
+          
       </div>
     );
   };
